@@ -1,35 +1,31 @@
 import React, { Component } from 'react';
-import Anchor from './anchorLayout';
-import logo from './logo.svg';
+import AnchorLayout from './anchorLayout';
+/* import logo from './logo.svg'; */
 import './App.css';
 
 class App extends Component {
+
+  constructor() {
+    super()
+    this.mainPanel = React.createRef();
+    this.buttonPanel = React.createRef();
+  }
+
   render() {
     const doms = [];
-    for(let i=0; i<9 ; i++){
-      doms.push(<button key={i} onClick={this.handleClick.bind(this, i)}>add</button>);
+    for(let i=0; i < 9; i++){
+      doms.push(<button key={i} onClick={this.handleClick.bind(this, i)}>{i}</button>);
     }
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Anchor setAnchor={this.setAnchor}/>
-        {doms}
+        <AnchorLayout ref={this.mainPanel} />
+        <AnchorLayout init={doms} />
       </div>
     );
   }
   
-  setAnchor = (ref) => {
-    this.anchor = ref;
-  }
-
   handleClick = (i) => {
-    this.anchor.insertTestBox(i);
+    this.mainPanel.current.insertTestBox(i);
   }
 
 }

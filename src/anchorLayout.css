@@ -1,7 +1,4 @@
 .container{
-    /* height: 600px;
-    border: 2px solid black; */
-    
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -9,16 +6,11 @@
 }
 
 .first-box, .medial-box, .end-box{
-    /* height: 200px; */
-
     justify-content: space-between;
     display: flex;
 }
 
 .f, .m, .e {
-    /* width: 100px;
-    border: 2px solid red; */
-
     display: flex;
 }
 
@@ -36,8 +28,6 @@
 }
 
 .first-box{
-    /* border: 2px solid rgb(136, 63, 209); */
-
     flex-direction: row;
 
 }
@@ -55,8 +45,6 @@
 }
 
 .medial-box{
-    /* border: 2px solid rgb(247, 67, 67); */
-
     flex-direction: row;
     flex-grow: 1;
 }
@@ -74,8 +62,6 @@
 }
 
 .end-box{
-    /* border: 2px solid rgb(9, 153, 81); */
-
     flex-direction: row;
 }
 
