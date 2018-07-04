@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LinkedList from './utils/LinkedList';
+// import LinkedList from './utils/LinkedList';
 import './anchorLayout.css';
 
 function TestBox() {
@@ -41,9 +41,11 @@ class AnchorLayout extends Component {
         if('init' in props && props.init instanceof Array) {
             for(let i = 0; i < 9; i++) {
                 if(props.init[i] instanceof Array) {
-                    anchors[i] = props.init[i];
+                    anchors[i] = props.init[i].map((compo) => {
+                        return this.innerCompo(i, compo);
+                    });
                 }else if(props.init[i] instanceof Object){
-                    anchors[i] = [props.init[i]];
+                    anchors[i] = [this.innerCompo(i, props.init[i])];
                 }else {
                     anchors[i] = [];
                 }
@@ -58,7 +60,7 @@ class AnchorLayout extends Component {
 
     insertCompo(compo, position) {
         const anchors = this.state.anchors.slice();
-        anchors[position].push(compo);
+        anchors[position].push(this.innerCompo(position, compo));
         this.setState({anchors: anchors});
     }
 
@@ -70,8 +72,8 @@ class AnchorLayout extends Component {
     render() {
         const anchors = Array(9);
         for(let i = 0; i < 9; i++) {
-            anchors[i] = this.state.anchors[i].map((compo) => {
-                return <InnerCompoContainer compo={compo} />
+            anchors[i] = this.state.anchors[i].map((innerCompo) => {
+                return <InnerCompoContainer key={innerCompo.key} compo={innerCompo.compo} />
             })
         }
         return (
