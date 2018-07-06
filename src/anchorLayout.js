@@ -37,7 +37,7 @@ class AnchorLayout extends Component {
     }
 
     initAnchors(props) {
-        let anchors = Array(9);
+        let anchors = Array(9).fill([]);
         if('init' in props && props.init instanceof Array) {
             for(let i = 0; i < 9; i++) {
                 if(props.init[i] instanceof Array) {
@@ -45,14 +45,8 @@ class AnchorLayout extends Component {
                         return this.innerCompo(i, compo);
                     });
                 }else if(props.init[i] instanceof Object){
-                    anchors[i] = [this.innerCompo(i, props.init[i])];
-                }else {
-                    anchors[i] = [];
+                    anchors[i].push(this.innerCompo(i, props.init[i]));
                 }
-            }
-        }else {
-            for (let i = 0; i < 9; i++){ 
-                anchors[i] = [];
             }
         }
         return anchors;
